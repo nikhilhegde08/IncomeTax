@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Computer</title>
+</head>
+<body>
+    {% if response %}
+    <h1>Your Tax Computation Sheet</h1>
+    <br>
+    <div>
+        {% if result %}
+        <p>Slab: {{ result.get('slab') }}</p>
+        <p>Base Salary: {{ result.get('original_income') }}</p>
+        <p>Taxable Income: {{ result.get('taxable_income') }}</p>
+        <p>Income Tax: {{ result.get('income_tax') }}</p>
+        <p>Income Upon Tax: {{ result.get('income_upon_tax') }}</p>
+        <p>Amount Saved: {{ result.get('amount_saved') }}</p>
+        {% endif %}    
+    </div> 
+    <form action="/" method="GET">
+        <input type="submit" value="Back">
+    </form>
+    {% endif %}
+</body>
+</html>

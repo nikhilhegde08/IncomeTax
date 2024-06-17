@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Computer</title>
+</head>
+<body>
+    <h1>Tax Computation Program</h1>
+    <form action="/submit" method="post">
+        <label>Enter your base Salary</label><br>
+        <input type="text" id="income" name="income"><br>
+        <br>
+        <label for="name">Enter the Total Exemption</label><br>
+        <input type="text" id="exemption" name="exemption"><br>   
+        <br>       
+        <input type="submit" value="Compute Income Tax">
+    </form>
+    {% if response == "failed" %}
+    <div>
+        <p>{{message}}</p>
+    </div> 
+    {% endif %}
+</body>
+</html>
