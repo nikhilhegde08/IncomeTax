@@ -84,7 +84,6 @@ class IncomeTaxCalculator:
 
     def compute_income_tax(self):
         slab = None
-        
         for cls in Slab.__subclasses__():
             if cls.is_current_slab(self.income):
                 slab = cls()
