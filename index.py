@@ -1,6 +1,5 @@
-import locale
-import string
 import random
+import string
 from abc import ABC, abstractclassmethod
 from datetime import timedelta
 
@@ -105,8 +104,7 @@ class IncomeTaxCalculator:
 
         amount_saved = (self.original_income * slab.rate) - income_tax
 
-        locale.setlocale(locale.LC_MONETARY, "en_IN")
-        rupees = lambda amt: locale.currency(amt, grouping=True)
+        rupees = lambda amt: f"INR {amt}"
 
         result = {
             "original_income": rupees(self.original_income),
@@ -120,7 +118,7 @@ class IncomeTaxCalculator:
 
 
 app = Flask(__name__)
-key = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+key = "".join(random.choices(string.ascii_lowercase + string.digits, k=5))
 app.secret_key = key.encode()
 app.permanent_session_lifetime = timedelta(seconds=30)
 
@@ -137,7 +135,7 @@ def compute():
     try:
         income = float(request.form.get("income", None))
     except Exception as exc:
-        flash("Income should be a number",category="error")
+        flash("Income should be a number", category="error")
         return redirect(url_for("home"))
 
     exemption = request.form.get("exemption", None)
@@ -157,3 +155,7 @@ def compute():
         return redirect(url_for("home"))
     result = ic.compute_income_tax()
     return render_template("result.html", response="success", result=result)
+
+
+if __name__ == "__main__":
+    app.run()
