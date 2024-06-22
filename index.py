@@ -157,8 +157,3 @@ def compute():
         return redirect(url_for("home"))
     result = ic.compute_income_tax()
     return render_template("result.html", response="success", result=result)
-
-
-# Run the Flask app
-if __name__ == "__main__":
-    app.run()
